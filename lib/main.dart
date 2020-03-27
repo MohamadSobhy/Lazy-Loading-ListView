@@ -42,12 +42,14 @@ class _LazyLoadingListViewPageState extends State<LazyLoadingListViewPage> {
     });
   }
 
-  void _loadMoreItems() {
+  void _loadMoreItems() async {
     if (_currentMaxLength > 350) return;
     for (int i = _currentMaxLength; i < _currentMaxLength + 10; i++) {
       _items.add('Items ${i + 1}');
     }
-    Future.wait([Future.delayed(Duration(seconds: 1))]);
+    
+    await Future.delayed(Duration(seconds: 1));
+
     setState(() {
       _currentMaxLength += 10;
     });
